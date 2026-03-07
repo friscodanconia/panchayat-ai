@@ -94,7 +94,7 @@ export default function ChatInterface({ selectedLanguage }: ChatInterfaceProps) 
       {/* Messages area */}
       <div ref={scrollRef} className="flex-1 overflow-y-auto scrollbar-hide">
         {messages.length === 0 ? (
-          <WelcomeScreen onExampleClick={handleExampleClick} />
+          <WelcomeScreen onExampleClick={handleExampleClick} languageCode={selectedLanguage} />
         ) : (
           <div className="max-w-3xl mx-auto px-4 py-4 space-y-4">
             {messages.map((msg) => (

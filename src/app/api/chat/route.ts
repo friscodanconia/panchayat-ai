@@ -15,15 +15,10 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Missing message" }, { status: 400 });
     }
 
-    // 1. Detect language if not provided
-    let languageCode = providedLangCode;
-    if (!languageCode || languageCode === "unknown") {
-      const detected = await detectLanguage(message, apiKey);
-      languageCode = detected.languageCode;
-    }
-
-    // Normalize language code
-    if (languageCode && !languageCode.includes("-")) {
+    // 1. Use the user's chosen language (selected on landing screen)
+    //    This is a deliberate choice — all responses will be in this language
+    let languageCode = providedLangCode || "en-IN";
+    if (!languageCode.includes("-")) {
       languageCode = `${languageCode}-IN`;
     }
 
